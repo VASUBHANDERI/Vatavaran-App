@@ -14,5 +14,6 @@
       "developmentClient": true
     },
     "production": {}
-  }
+  },
+   "cli": { "requireCommit": true }
 }

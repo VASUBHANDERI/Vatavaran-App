@@ -76,9 +76,6 @@ const Vatavaran = () => {
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <ScrollView
           showsVerticalScrollIndicator={false}
-          style={{
-            borderColor: "red",
-          }}
         >
           <Background icon={weather.icon}>
             <StatusBar style="light" />
@@ -120,7 +117,7 @@ const Vatavaran = () => {
                 alignItems: "center",
                 justifyContent: "space-evenly",
                 marginTop: Constants.statusBarHeight,
-                marginBottom: Constants.statusBarHeight * 3,
+                marginBottom: Constants.statusBarHeight * 2,
               }}
             >
               <View

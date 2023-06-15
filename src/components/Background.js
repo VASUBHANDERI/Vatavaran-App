@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get("screen").height,
     alignItems: "center",
     paddingTop: Constants.statusBarHeight * 2,
+
   },
 });
 

@@ -42,7 +42,7 @@ const SearchBar = ({ city, onSubmitCity, onChangeCity, onSubmitLocation }) => {
       </View>
       <TouchableOpacity onPress={onSubmitLocation}>
         <View style={styles.locationContainer}>
-          <MaterialIcons name="location-pin" size={scale(24)} color="white" />
+          <MaterialIcons name="location-pin" size={scale(23)} color="white" />
         </View>
       </TouchableOpacity>
     </View>

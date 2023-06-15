@@ -13,6 +13,7 @@ import Constants from "expo-constants";
 import { StatusBar } from "expo-status-bar";
 import * as Location from "expo-location";
 import { Entypo, AntDesign, FontAwesome5, Feather } from "@expo/vector-icons";
+import { scale, verticalScale } from "react-native-size-matters";
 
 import Background from "./src/components/Background";
 import SearchBar from "./src/components/SearchBar";
@@ -21,6 +22,11 @@ import {
   Provider,
   Context as WeatherContext,
 } from "./src/context/WeatherContext";
+
+Text.defaultProps = {
+  ...(Text.defaultProps || {}),
+  allowFontScaling: false,
+};
 
 const Vatavaran = () => {
   // const API_KEY = "f98bcb294244678f3748deb6f9bd951d";
@@ -68,7 +74,12 @@ const Vatavaran = () => {
   if (loaded && permission) {
     return (
       <KeyboardAvoidingView style={{ flex: 1 }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{
+            borderColor: "red",
+          }}
+        >
           <Background icon={weather.icon}>
             <StatusBar style="light" />
             <SearchBar
@@ -91,8 +102,8 @@ const Vatavaran = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 alignSelf: "stretch",
-                marginHorizontal: 50,
-                padding: 20,
+                marginHorizontal: scale(50),
+                padding: scale(20),
               }}
             >
               <Icon icon={weather.icon} />
@@ -116,19 +127,23 @@ const Vatavaran = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                  paddingVertical: 5,
+                  paddingVertical: verticalScale(5),
                 }}
               >
                 <View style={styles.infocontainer}>
                   <View style={styles.infoheadcontainer}>
-                    <Entypo name="drop" size={24} color="white" />
+                    <Entypo name="drop" size={scale(22)} color="white" />
                     <Text style={styles.infohead}>Humidity</Text>
                   </View>
                   <Text style={styles.head2}>{main.humidity} %</Text>
                 </View>
                 <View style={styles.infocontainer}>
                   <View style={styles.infoheadcontainer}>
-                    <FontAwesome5 name="cloudscale" size={24} color="white" />
+                    <FontAwesome5
+                      name="cloudscale"
+                      size={scale(22)}
+                      color="white"
+                    />
                     <Text style={styles.infohead}>Pressure</Text>
                   </View>
                   <Text style={styles.head2}>{main.pressure} hPa</Text>
@@ -138,19 +153,19 @@ const Vatavaran = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                  paddingVertical: 5,
+                  paddingVertical: verticalScale(5),
                 }}
               >
                 <View style={styles.infocontainer}>
                   <View style={styles.infoheadcontainer}>
-                    <Entypo name="eye" size={24} color="white" />
+                    <Entypo name="eye" size={scale(22)} color="white" />
                     <Text style={styles.infohead}>Visibility</Text>
                   </View>
                   <Text style={styles.head2}>{result.visibility} m</Text>
                 </View>
                 <View style={styles.infocontainer}>
                   <View style={styles.infoheadcontainer}>
-                    <AntDesign name="cloud" size={24} color="white" />
+                    <AntDesign name="cloud" size={scale(22)} color="white" />
                     <Text style={styles.infohead}>Cloud</Text>
                   </View>
                   <Text style={styles.head2}>{clouds.all} %</Text>
@@ -160,19 +175,19 @@ const Vatavaran = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                  paddingVertical: 5,
+                  paddingVertical: verticalScale(5),
                 }}
               >
                 <View style={styles.infocontainer}>
                   <View style={styles.infoheadcontainer}>
-                    <Feather name="wind" size={24} color="white" />
+                    <Feather name="wind" size={scale(22)} color="white" />
                     <Text style={styles.infohead}>Wind Speed</Text>
                   </View>
                   <Text style={styles.head2}>{wind.speed} m/s</Text>
                 </View>
                 <View style={styles.infocontainer}>
                   <View style={styles.infoheadcontainer}>
-                    <Entypo name="direction" size={24} color="white" />
+                    <Entypo name="direction" size={scale(22)} color="white" />
                     <Text style={styles.infohead}>Wind Direction</Text>
                   </View>
                   <Text style={styles.head2}>{wind.deg}°</Text>
@@ -182,14 +197,14 @@ const Vatavaran = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                  paddingVertical: 5,
+                  paddingVertical: verticalScale(5),
                 }}
               >
                 <View style={styles.infocontainer}>
                   <View style={styles.infoheadcontainer}>
                     <FontAwesome5
                       name="temperature-high"
-                      size={24}
+                      size={scale(22)}
                       color="white"
                     />
                     <Text style={styles.infohead}>Maximum</Text>
@@ -202,7 +217,7 @@ const Vatavaran = () => {
                   <View style={styles.infoheadcontainer}>
                     <FontAwesome5
                       name="temperature-low"
-                      size={24}
+                      size={scale(22)}
                       color="white"
                     />
 
@@ -243,7 +258,7 @@ const Vatavaran = () => {
                 style={{
                   color: "#ffffff50",
                   alignSelf: "center",
-                  fontSize: 20,
+                  fontSize: scale(20),
                 }}
               >
                 City not Found!
@@ -278,7 +293,7 @@ const Vatavaran = () => {
                 style={{
                   color: "#ffffff50",
                   alignSelf: "center",
-                  fontSize: 20,
+                  fontSize: scale(20),
                 }}
               >
                 Location Access Denied!
@@ -313,7 +328,7 @@ const Vatavaran = () => {
                 style={{
                   color: "#ffffff50",
                   alignSelf: "center",
-                  fontSize: 20,
+                  fontSize: scale(20),
                 }}
               >
                 Something went wrong!
@@ -334,36 +349,37 @@ const styles = StyleSheet.create({
   },
   name: {
     color: "white",
-    fontSize: 50,
-    marginTop: 10,
+    fontSize: scale(45),
+    marginTop: verticalScale(10),
   },
   temp: {
     color: "white",
-    fontSize: 50,
+    fontSize: scale(45),
   },
   head2: {
     color: "white",
-    fontSize: 20,
+    paddingTop: verticalScale(2),
+    fontSize: scale(17),
   },
   infohead: {
     color: "white",
-    fontSize: 20,
-    marginLeft: 3,
+    fontSize: scale(17),
+    marginLeft: scale(3),
   },
   infocontainer: {
     backgroundColor: "rgba(0, 0, 0, 0.4)",
     alignItems: "center",
     justifyContent: "space-around",
     flex: 1,
-    marginHorizontal: 5,
-    padding: 10,
-    borderRadius: 15,
+    marginHorizontal: scale(5),
+    padding: scale(10),
+    borderRadius: scale(15),
     borderColor: "white",
-    borderWidth: 1,
+    borderWidth: scale(1),
   },
   infoheadcontainer: {
     flexDirection: "row",
-    marginBottom: 5,
+    marginBottom: scale(5),
   },
 });
 

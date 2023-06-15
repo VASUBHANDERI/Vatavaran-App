@@ -7,6 +7,12 @@ import {
 } from "react-native";
 import React from "react";
 import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
+import { scale, verticalScale } from "react-native-size-matters";
+
+TextInput.defaultProps = {
+  ...(TextInput.defaultProps || {}),
+  allowFontScaling: false,
+};
 
 const SearchBar = ({ city, onSubmitCity, onChangeCity, onSubmitLocation }) => {
   return (
@@ -15,9 +21,9 @@ const SearchBar = ({ city, onSubmitCity, onChangeCity, onSubmitLocation }) => {
         <TouchableOpacity onPress={onSubmitCity}>
           <EvilIcons
             name="search"
-            size={24}
+            size={scale(24)}
             color="white"
-            style={{ paddingRight: 5 }}
+            style={{ paddingRight: scale(5) }}
           />
         </TouchableOpacity>
 
@@ -28,6 +34,7 @@ const SearchBar = ({ city, onSubmitCity, onChangeCity, onSubmitLocation }) => {
           style={{
             flex: 1,
             color: "white",
+            allowFontScaling: false,
           }}
           onEndEditing={onSubmitCity}
           placeholderTextColor="#ffffff95"
@@ -35,11 +42,7 @@ const SearchBar = ({ city, onSubmitCity, onChangeCity, onSubmitLocation }) => {
       </View>
       <TouchableOpacity onPress={onSubmitLocation}>
         <View style={styles.locationContainer}>
-          <MaterialIcons
-            name="location-pin"
-            size={24}
-            color="white"
-          />
+          <MaterialIcons name="location-pin" size={scale(24)} color="white" />
         </View>
       </TouchableOpacity>
     </View>
@@ -50,13 +53,13 @@ export default SearchBar;
 
 const styles = StyleSheet.create({
   input: {
-    borderWidth: 2,
+    borderWidth: scale(2),
     borderColor: "white",
-    borderRadius: 20,
+    borderRadius: scale(20),
     width: Dimensions.get("screen").width * 0.9,
-    paddingLeft: 5,
-    paddingVertical: 5,
-    marginLeft: 10,
+    paddingLeft: scale(5),
+    paddingVertical: verticalScale(5),
+    marginLeft: scale(10),
     color: "white",
     flexDirection: "row",
     alignItems: "center",
@@ -64,13 +67,13 @@ const styles = StyleSheet.create({
   },
   locationContainer: {
     borderColor: "white",
-    borderWidth: 2,
+    borderWidth: scale(2),
     justifyContent: "center",
-    marginHorizontal: 5,
-    padding: 5,
-    borderRadius: 20,
-    height: 40,
-    width: 40,
+    marginHorizontal: scale(5),
+    padding: scale(5),
+    borderRadius: scale(20),
+    height: verticalScale(40),
+    width: scale(40),
     alignItems: "center",
   },
 });
